@@ -1,0 +1,98 @@
+Задание 1. (Таблица умножения)
+
+num = int(input('Введи число\n'))
+
+for i in range(1,11):
+    res = num*i
+    print(num,'*',i,'=',res)
+
+Задача 2.(Конвертор валют)
+
+
+def convert_currency(amount, rate):
+    return amount * rate
+
+print("Добро пожаловать в программу конвертера валют!")
+
+while True:
+    print("\nВыберите действие:")
+    print("1. Конвертировать валюту")
+    print("2. Выйти из программы")
+
+    choice = input("Введите номер выбранного действия: ")
+
+    if choice == '1':
+        amount = float(input("Введите сумму для конвертации: "))
+        rate = float(input("Введите курс обмена: "))
+
+        converted_amount = convert_currency(amount, rate)
+        print(f"Результат конвертации: {converted_amount}")
+
+    elif choice == '2':
+        print("Программа завершена.")
+        break
+
+    else:
+        print("Некорректный выбор. Попробуйте снова.")
+        
+Задача 3.(диапазон)
+
+def display_range(start, end, number):
+    for i in range(start, end+1):
+        if i == number:
+            print(f"!{i}!", end=' ')
+        else:
+            print(i, end=' ')
+    print()
+
+print("Добро пожаловать в программу диапазона чисел!")
+
+start = int(input("Введите начало диапазона: "))
+end = int(input("Введите конец диапазона: "))
+number = int(input("Введите число: "))
+
+while not (start <= number <= end):
+    print("Число не попадает в диапазон. Попробуйте снова.")
+    number = int(input("Введите число: "))
+
+print("Все числа диапазона:")
+display_range(start, end, number)
+
+Задание 4 (игра угадай число)
+
+import random
+import time
+
+def play_game():
+    print("Добро пожаловать в игру 'Угадай число'!")
+    print("Компьютер загадал число от 1 до 500.")
+    print("Попробуйте угадать его.")
+
+    number = random.randint(1, 500)
+    attempts = 0
+    start_time = time.time()
+
+    while True:
+        guess = input("Введите вашу догадку (или 0 для выхода): ")
+        if guess == '0':
+            print("Игра завершена.")
+            break
+
+        try:
+            guess = int(guess)
+        except ValueError:
+            print("Ошибка! Введите число.")
+            continue
+
+        attempts += 1
+
+        if guess < number:
+            print("Загаданное число больше вашей догадки.")
+        elif guess > number:
+            print("Загаданное число меньше вашей догадки.")
+        else:
+            end_time = time.time()
+            elapsed_time = round(end_time - start_time, 2)
+            print(f"Поздравляю! Вы угадали число {number} за {attempts} попыток.")
+            print(f"Это заняло у вас {elapsed_time} секунд.")
+            break
